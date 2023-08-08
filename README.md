@@ -1,7 +1,7 @@
 # Rezo-MySQL
-If you're looking to manage MySQL connections and run SQL queries directly within Visual Studio Code, you can use an extension like "MySQL" or "SQL Server (mssql)".
+If you're looking to manage MySQL connections and run SQL queries directly within Visual Studio Code, you can use an extension like "MySQL" or "SQL Server (mssql)".For instance, the "MySQL" extension allows you to set up connections and execute SQL queries. 
 
-## For instance, the "MySQL" extension allows you to set up connections and execute SQL queries. Here's how to do it:
+## Step of performing operation:
 
  1.Install the Extension:
 
@@ -25,7 +25,6 @@ If you're looking to manage MySQL connections and run SQL queries directly withi
 
 - Now that your connection is configured, go back to your .sql file with the SQL code.
 - Click on the green "Run Query" button to execute the SQL code on the connected MySQL database.
-- Please note that the exact appearance of the interface might have changed since my last update in September 2021, and you should refer to the documentation of 
-  the specific extension you're using for the most accurate instructions.
+
 
 Always exercise caution when running SQL queries on databases, especially if you're working with production data. It's advisable to test queries on a development or testing environment before applying them to production databases.
