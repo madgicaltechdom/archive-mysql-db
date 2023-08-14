@@ -36,18 +36,11 @@ git clone https://github.com/madgicaltechdom/rezo-mysql
 - Search for "MySQL" and install the "MySQL" extension provided by Jun Han.
   
  2. Configure a Connection:
-
-- Open your .sql file that contains the SQL code to create the cache table.
-- Above the SQL code, you should see a  "MySQL" button in the left corner bottom.
-- To the right of this button, you should see a "+" logo. Click on it.
-- A "MySQL" tab will appear below. In the "MySQL Connections" tab, click on the "+" for new connection.
-
- 3. Run the Query:
-
-- Now that your connection is configured, go back to your .sql file with the SQL code.
-- Click on the green "Run Query" button to execute the SQL code on the connected MySQL database.
-
-                                     or
+- On the left bottom you can see "MYSQL" below "OUTLINE" and "TIMELINE" near the Setting icon.
+   On hover, you can see "+". Click on it.
+- Then provide details like "host", "user", "password", "port" etc.
+-   And then press enter. Your connection will be added.
+3. Run Query:
 - Open your .sql file that contains the SQL code and provide the database name to create the cache/insert table.
 - Right-click on the file then click on the "Run Query" button.
 - Your query will run and successful message you can see in the terminal.
