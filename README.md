@@ -56,16 +56,28 @@ Always exercise caution when running SQL queries on databases, especially if you
 4. Install gh-ost [tool]( https://github.com/github/gh-ost/releases/tag/v1.1.5)
 5. Keep the tool and repo in the same folder or give the path to gh-ost tool in all script files where "./gh-ost" is called.
 6. Preparing tables for partitioning
-- Open run_ghost.sh. Fill credentials (Database name, host, Password, etc)
-- Then Run "PARTITION BY RANGE(TO_DAYS(created_at)) (PARTITION p0 VALUES LESS THAN (TO_DAYS('2023-01-01')), PARTITION p1 VALUES LESS THAN (TO_DAYS('2023-02-01')), PARTITION p2 VALUES LESS THAN (TO_DAYS('2023-03-01')), PARTITION p3 VALUES LESS THAN (TO_DAYS('2023-04-01')), PARTITION p4 VALUES LESS THAN (MAXVALUE))" --execute" in the terminal and go to directory where file is located.
+- Open run_ghost.sh file . Fill in credentials (Database name, host, Password, etc)
+- Then Run
+```
+  PARTITION BY RANGE(TO_DAYS(created_at)) (PARTITION p0 VALUES LESS THAN (TO_DAYS('2023-01-01')), PARTITION p1 VALUES LESS THAN (TO_DAYS('2023-02-01')), PARTITION p2 VALUES LESS THAN (TO_DAYS('2023-03-01')), PARTITION p3 VALUES LESS THAN (TO_DAYS('2023-04-01')), PARTITION p4 VALUES LESS THAN (MAXVALUE))" --execute
+```
+ in the terminal and go to the directory where the file is located.
 - Finally, Partition will be created. You can change the above query according to your requirement like a partition on the basis of month or column name or increase/decrease no of partition etc.
 5. Exporting old data from the table
-- Open export_partition.sh. Provide credentials like database name and export_dir
-- Run ./export-partition.sh table_name partition_name in the terminal and go to the directory where the file is located.
-- Provide mysql password again and again if asked
+- Open export_partition.sh file, Provide credentials like database name and export_dir
+- Run
+```
+  ./export-partition.sh table_name partition_name
+```
+  in the terminal and go to the directory where the file is located.
+- Provide MySQL password again and again if asked
 - Finally, your file will be created in the directory you provided in the script file if all the steps run successfully.
 6. Restoring data from the archive
-- Run gunzip /export_dir/filename.gz | MySQL -u root -p in the terminal and go to the directory where the file is located.
+- Run
+  ```
+   gunzip /export_dir/filename.gz | MySQL -u root -p
+  ```
+  in the terminal and go to the directory where the file is located.
 - Your file will be restored.
 ### Steps for Automation
 1. After creating the table, create a partition by "PARTITION BY RANGE (TO_DAYS(created_at)) (
