@@ -60,7 +60,7 @@ Always exercise caution when running SQL queries on databases, especially if you
 ````
  https://github.com/madgicaltechdom/rezo-mysql/tree/mysql-archieve-latest
 ````
-4. Install gh-ost [tool] ( https://github.com/github/gh-ost/releases/tag/v1.1.5)
+4. Install gh-ost [tool]( https://github.com/github/gh-ost/releases/tag/v1.1.5)
 5. Keep the tool and repo in the same folder or give the path to gh-ost tool in all script files where "./gh-ost" is called.
 6. Preparing tables for partitioning
 - Open run_ghost.sh. Fill credentials (Database name, host, Password, etc)
