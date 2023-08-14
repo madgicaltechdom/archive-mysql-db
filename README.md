@@ -59,7 +59,7 @@ Always exercise caution when running SQL queries on databases, especially if you
 - Open run_ghost.sh file . Fill in credentials (Database name, host, Password, etc)
 - Then Run
 ```
-  PARTITION BY RANGE(TO_DAYS(created_at)) (PARTITION p0 VALUES LESS THAN (TO_DAYS('2023-01-01')), PARTITION p1 VALUES LESS THAN (TO_DAYS('2023-02-01')), PARTITION p2 VALUES LESS THAN (TO_DAYS('2023-03-01')), PARTITION p3 VALUES LESS THAN (TO_DAYS('2023-04-01')), PARTITION p4 VALUES LESS THAN (MAXVALUE))" --execute
+ ./run_ghost.sh tablename "PARTITION BY RANGE(TO_DAYS(created_at)) (PARTITION p0 VALUES LESS THAN (TO_DAYS('2023-01-01')), PARTITION p1 VALUES LESS THAN (TO_DAYS('2023-02-01')), PARTITION p2 VALUES LESS THAN (TO_DAYS('2023-03-01')), PARTITION p3 VALUES LESS THAN (TO_DAYS('2023-04-01')), PARTITION p4 VALUES LESS THAN (MAXVALUE))" --execute
 ```
  in the terminal and go to the directory where the file is located.
 - Finally, Partition will be created. You can change the above query according to your requirement like a partition on the basis of month or column name or increase/decrease no of partition etc.
