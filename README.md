@@ -38,7 +38,7 @@ git clone https://github.com/madgicaltechdom/rezo-mysql
  2. Configure a Connection:
 
 - Open your .sql file that contains the SQL code to create the cache table.
-- Above the SQL code, you should see a green "MySQL" button in the left corner bottom.
+- Above the SQL code, you should see a  "MySQL" button in the left corner bottom.
 - To the right of this button, you should see a "+" logo. Click on it.
 - A "MySQL" tab will appear below. In the "MySQL Connections" tab, click on the "+" for new connection.
 
