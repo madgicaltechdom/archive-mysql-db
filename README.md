@@ -46,7 +46,8 @@ git clone https://github.com/madgicaltechdom/rezo-mysql
 
 - Now that your connection is configured, go back to your .sql file with the SQL code.
 - Click on the green "Run Query" button to execute the SQL code on the connected MySQL database.
-                                  or 
+
+                                     or
 - Open your .sql file that contains the SQL code and provide the database name to create the cache/insert table.
 - Right-click on the file then click on the "Run Query" button.
 - Your query will run and successful message you can see in the terminal.
