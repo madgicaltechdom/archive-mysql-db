@@ -48,7 +48,7 @@ git clone https://github.com/madgicaltechdom/rezo-mysql
 Always exercise caution when running SQL queries on databases, especially if you're working with production data. It's advisable to test queries on a development or testing environment before applying them to production databases.
 
 ## My Sql large tables Archiving
-### Steps for Archiving 
+### Steps for Archiving (video)[https://drive.google.com/file/d/13XYQ_gdBlxuHMapFnvCGQxcrUg-js9e7/view]
 1. Clone repo:
 ````
  https://github.com/madgicaltechdom/rezo-mysql/tree/mysql-archieve-latest
