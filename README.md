@@ -27,7 +27,7 @@ To configure your system using this repository, follow these steps:
 ```
 git clone https://github.com/madgicaltechdom/rezo-mysql
 ```
-## Step of performing operation:
+## Step of performing operation: [video](https://drive.google.com/file/d/18FqgshsfDs1wlN9qG178P9bOByEkb6ii/view)
 
  1. Install the Extension:
 
@@ -38,9 +38,9 @@ git clone https://github.com/madgicaltechdom/rezo-mysql
  2. Configure a Connection:
 
 - Open your .sql file that contains the SQL code to create the cache table.
-- Above the SQL code, you should see a green "Run Query" button.
-- To the right of this button, you should see a "MySQL" logo. Click on it.
-- A "MySQL" tab will appear below. In the "MySQL Connections" tab, click on the gear icon to configure a new connection.
+- Above the SQL code, you should see a green "MySQL" button in the left corner bottom.
+- To the right of this button, you should see a "+" logo. Click on it.
+- A "MySQL" tab will appear below. In the "MySQL Connections" tab, click on the "+" for new connection.
 
  3. Run the Query:
 
