@@ -97,6 +97,15 @@ PARTITION future VALUES LESS THAN (MAXVALUE)")
 6. Run bash ./autoarchive-tables.sh in the terminal and go to the directory where the file is located.
 7. Provide MySQL password again and again if asked
 8. Finally if all your commands run successfully then you can see the dump file is created in the cache(table name) folder.
+## Output:
+![Screenshot 2023-08-14 at 3 06 46 PM](https://github.com/madgicaltechdom/rezo-mysql/assets/109335469/87f44afd-91df-4d5b-a75f-0546db269c20)
+![Screenshot 2023-08-14 at 3 07 00 PM](https://github.com/madgicaltechdom/rezo-mysql/assets/109335469/ed0f9c44-e03f-4417-b67a-ba44bbde471e)
+![Screenshot 2023-08-14 at 3 07 15 PM](https://github.com/madgicaltechdom/rezo-mysql/assets/109335469/f4a1696b-2fae-4d95-afc0-e6a3a16a874f)
+   
 ## Additional Resources
 - [MySQL Documentation](https://dev.mysql.com/doc/)
 - [MySQL Workbench Documentation](https://dev.mysql.com/doc/workbench/en/)
+
+  ## References
+  we have taken help from this [article](https://dev.to/nejremeslnici/archiving-large-mysql-tables-part-i-intro-4im1) 
+  
