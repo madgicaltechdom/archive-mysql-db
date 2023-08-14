@@ -18,7 +18,15 @@ This document provides instructions for setting up and managing a MySQL database
 - Click on "Add Connection."
 - Fill in the connection details for your MySQL server, such as server address, port, username, password, and database.
 - After entering the details, click "Connect" to establish the connection.
+## Installation Steps:
+To configure your system using this repository, follow these steps:
 
+
+1. Clone the repository to your local machine by running the below command:
+
+```
+git clone https://github.com/madgicaltechdom/rezo-mysql
+```
 ## Step of performing operation:
 
  1. Install the Extension:
