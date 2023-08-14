@@ -56,10 +56,13 @@ Always exercise caution when running SQL queries on databases, especially if you
 
 ## My Sql large tables Archiving
 ### Steps for Archiving 
-1. Clone repo: https://github.com/madgicaltechdom/rezo-mysql/tree/mysql-archieve-latest
-2. Install gh-ost tool from https://github.com/github/gh-ost/releases/tag/v1.1.5
-3. Keep the tool and repo in the same folder or give the path to gh-ost tool in all script files where "./gh-ost" is called.
-4. Preparing tables for partitioning
+1. Clone repo:
+````
+ https://github.com/madgicaltechdom/rezo-mysql/tree/mysql-archieve-latest
+````
+4. Install gh-ost [tool] ( https://github.com/github/gh-ost/releases/tag/v1.1.5)
+5. Keep the tool and repo in the same folder or give the path to gh-ost tool in all script files where "./gh-ost" is called.
+6. Preparing tables for partitioning
 - Open run_ghost.sh. Fill credentials (Database name, host, Password, etc)
 - Then Run "PARTITION BY RANGE(TO_DAYS(created_at)) (PARTITION p0 VALUES LESS THAN (TO_DAYS('2023-01-01')), PARTITION p1 VALUES LESS THAN (TO_DAYS('2023-02-01')), PARTITION p2 VALUES LESS THAN (TO_DAYS('2023-03-01')), PARTITION p3 VALUES LESS THAN (TO_DAYS('2023-04-01')), PARTITION p4 VALUES LESS THAN (MAXVALUE))" --execute" in the terminal and go to directory where file is located.
 - Finally, Partition will be created. You can change the above query according to your requirement like a partition on the basis of month or column name or increase/decrease no of partition etc.
