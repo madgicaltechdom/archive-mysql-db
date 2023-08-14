@@ -1,5 +1,17 @@
-# Rezo-MySQL
+## Rezo-MySQL
 If you're looking to manage MySQL connections and run SQL queries directly within Visual Studio Code, you can use an extension like "MySQL" or "SQL Server (mssql)".For instance, the "MySQL" extension allows you to set up connections and execute SQL queries. 
+This document provides instructions for setting up and managing a MySQL database connection for your application. Follow the steps below to establish a connection to your MySQL database.
+
+# Prerequisites
+- MySQL Server is installed and running.
+- Credentials (username and password) with appropriate privileges to access the desired database.
+
+# Connection Parameters
+- Host: The hostname or IP address of the MySQL server.
+- Port: The port number on which the MySQL server is running (default: 3306).
+- Database: The name of the target database.
+- Username: The username with access to the database.
+- Password: The password associated with the username.
 
 ## Step of performing operation:
 
@@ -28,3 +40,6 @@ If you're looking to manage MySQL connections and run SQL queries directly withi
 
 
 Always exercise caution when running SQL queries on databases, especially if you're working with production data. It's advisable to test queries on a development or testing environment before applying them to production databases.
+## Additional Resources
+- MySQL Documentation(https://dev.mysql.com/doc/)
+- MySQL Workbench Documentation(https://dev.mysql.com/doc/workbench/en/)
