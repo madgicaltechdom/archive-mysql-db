@@ -1,0 +1,10 @@
+# Configuration for tables auto-archival.
+#
+# Format:
+# table_name interval keep
+#  - table_name = the name of the table to be archived (must be already partitioned)
+#  - interval   = yearly | monthly | weekly
+#  - keep       = number - how many partitions (besides the "future" partition) to keep
+
+cache monthly 5
+cache monthly 5
