@@ -128,14 +128,17 @@ If you're working with an Azure Virtual Machine (VM) where MySQL is installed, c
 2. Create or Edit a Cron Job:
 The cron jobs are scheduled tasks that run at specified intervals. To create or edit a cron job, use the command crontab -e. This will open the cron job configuration in your default text editor.
 3. Write the Cron Job Entry: Add a new line to your cron job file to define the task you want to automate. The cron syntax consists of fields that specify the timing of the task. Here's a general format:
-   ```
+
+```
    minute hour day month day_of_week command_to_run
 ```
+
 Replace the placeholders with actual values. For example, to run a MySQL backup script every day at 2 AM, you might use:
 
 ```
 0 2 * * * /path/to/mysql_backup_script.sh
 ```
+
 4. Save and Exit: Save your changes and exit the text editor.
 5. Create the Script: Create a shell script (e.g., mysql_backup_script.sh) that contains the MySQL-related automation tasks you want to run. This script might involve MySQL commands for backups, data exports, imports, etc.
 
