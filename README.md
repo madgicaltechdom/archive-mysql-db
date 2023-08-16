@@ -42,20 +42,24 @@ git clone https://github.com/madgicaltechdom/rezo-mysql
 -   And then press enter. Your connection will be added.
 
 3. Run the following command to ALTER TABLE Command:
-   ```
+
+ ```
    ALTER TABLE cache DROP INDEX search_query;
-```
+ ```
 4. Run the command  to
+
 ```
 ALTER TABLE cache DROP INDEX id_UNIQUE;
 
 ALTER TABLE cache MODIFY created_at Datetime;
-```  
+```
+
 5. Run Query:
 - Open your .sql file that contains the SQL code and provide the database name to create the cache/insert table.
 - Right-click on the file then click on the "Run Query" button.
 - Your query will run and successful message you can see in the terminal.
 6. Run the command to show the table
+  
 ```
 SHOW CREATE TABLE cachet;
 ```
