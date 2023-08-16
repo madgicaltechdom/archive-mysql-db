@@ -1,5 +1,5 @@
 ## Rezo-MySQL
-If you're looking to manage MySQL connections and run SQL queries directly within Visual Studio Code, you can use an extension like "MySQL" or "SQL Server (mssql)".For instance, the "MySQL" extension allows you to set up connections and execute SQL queries. 
+If you're looking to manage MySQL connections and run SQL queries directly within Visual Studio Code, you can use an extension like "MySQL" or "SQL Server (mysql)".For instance, the "MySQL" extension allows you to set up connections and execute SQL queries. 
 This document provides instructions for setting up and managing a MySQL database connection for your application. Follow the steps below to establish a connection to your MySQL database.
 
 ## Prerequisites
@@ -121,6 +121,33 @@ Always exercise caution when running SQL queries on databases, especially if you
 ![Screenshot 2023-08-14 at 3 06 46 PM](https://github.com/madgicaltechdom/rezo-mysql/assets/109335469/87f44afd-91df-4d5b-a75f-0546db269c20)
 ![Screenshot 2023-08-14 at 3 07 00 PM](https://github.com/madgicaltechdom/rezo-mysql/assets/109335469/ed0f9c44-e03f-4417-b67a-ba44bbde471e)
 ![Screenshot 2023-08-14 at 3 07 15 PM](https://github.com/madgicaltechdom/rezo-mysql/assets/109335469/f4a1696b-2fae-4d95-afc0-e6a3a16a874f)
+
+## In Azure, you can use the cron syntax and the cronjob feature to schedule tasks, including automation of MySQL-related tasks. To automate MySQL tasks using cron and cronjob in Azure, follow these general steps:
+1. Access Your Azure VM:
+If you're working with an Azure Virtual Machine (VM) where MySQL is installed, connect to the VM using SSH.
+2. Create or Edit a Cron Job:
+The cron jobs are scheduled tasks that run at specified intervals. To create or edit a cron job, use the command crontab -e. This will open the cron job configuration in your default text editor.
+3. Write the Cron Job Entry: Add a new line to your cron job file to define the task you want to automate. The cron syntax consists of fields that specify the timing of the task. Here's a general format:
+   ```
+   minute hour day month day_of_week command_to_run
+```
+Replace the placeholders with actual values. For example, to run a MySQL backup script every day at 2 AM, you might use:
+
+```
+0 2 * * * /path/to/mysql_backup_script.sh
+```
+4. Save and Exit: Save your changes and exit the text editor.
+5. Create the Script: Create a shell script (e.g., mysql_backup_script.sh) that contains the MySQL-related automation tasks you want to run. This script might involve MySQL commands for backups, data exports, imports, etc.
+
+6. Make the Script Executable:
+Ensure the script has executable permissions. You can use the command chmod +x mysql_backup_script.sh to make the script executable.
+7. Verify the Execution: Wait for the specified time, and the cron job will execute the script automatically. You can also manually trigger the job for testing using the command crontab -l to list your cron jobs and their schedules.
+
+Remember to replace placeholders like /path/to/mysql_backup_script.sh with the actual path to your shell script, and adjust the timing to match your requirements.
+
+
+
+
    
 ## Additional Resources
 - [MySQL Documentation](https://dev.mysql.com/doc/)
