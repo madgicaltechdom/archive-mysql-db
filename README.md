@@ -131,12 +131,13 @@ The cron jobs are scheduled tasks that run at specified intervals. To create or 
 
 ```
    minute hour day month day_of_week command_to_run
-```
+  ```
 
 Replace the placeholders with actual values. For example, to run a MySQL backup script every day at 2 AM, you might use:
 
 ```
 0 2 * * * /path/to/mysql_backup_script.sh
+
 ```
 
 4. Save and Exit: Save your changes and exit the text editor.
