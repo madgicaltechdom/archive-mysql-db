@@ -46,7 +46,7 @@ git clone https://github.com/madgicaltechdom/rezo-mysql
  ```
    ALTER TABLE cache DROP INDEX search_query;
  ```
-4. Run the command  to
+4. Run the command  to ALTER TABLE Command:
 
 ```
 ALTER TABLE cache DROP INDEX id_UNIQUE;
@@ -97,7 +97,7 @@ Always exercise caution when running SQL queries on databases, especially if you
 - Open export_partition.sh file, Provide credentials like database name and export_dir
 - Run
 ```
-  ./export-partition.sh table_name partition_name
+  ./export_partition.sh table_name partition_name
 ```
   in the terminal and go to the directory where the file is located.
 - Provide MySQL password again and again if asked
