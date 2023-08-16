@@ -40,10 +40,25 @@ git clone https://github.com/madgicaltechdom/rezo-mysql
    On hover, you can see "+". Click on it.
 - Then provide details like "host", "user", "password", "port" etc.
 -   And then press enter. Your connection will be added.
-3. Run Query:
+
+3. Run the following command to ALTER TABLE Command:
+   ```
+   ALTER TABLE cache DROP INDEX search_query;
+```
+4. Run the command  to
+```
+ALTER TABLE cache DROP INDEX id_UNIQUE;
+
+ALTER TABLE cache MODIFY created_at Datetime;
+```  
+5. Run Query:
 - Open your .sql file that contains the SQL code and provide the database name to create the cache/insert table.
 - Right-click on the file then click on the "Run Query" button.
 - Your query will run and successful message you can see in the terminal.
+6. Run the command to show the table
+```
+SHOW CREATE TABLE cachet;
+```
 
 Always exercise caution when running SQL queries on databases, especially if you're working with production data. It's advisable to test queries on a development or testing environment before applying them to production databases.
 
@@ -91,23 +106,13 @@ Always exercise caution when running SQL queries on databases, especially if you
   in the terminal and go to the directory where the file is located.
 - Your file will be restored.
 ### Steps for Automation
-1. After creating the table, create a partition by "PARTITION BY RANGE (TO_DAYS(created_at)) (
-PARTITION m202301 VALUES LESS THAN (TO_DAYS('2023-02-01')),
-PARTITION m202302 VALUES LESS THAN (TO_DAYS('2023-03-01')),
-PARTITION m202303 VALUES LESS THAN (TO_DAYS('2023-04-01')),
-PARTITION m202304 VALUES LESS THAN (TO_DAYS('2023-05-01')),
-PARTITION m202305 VALUES LESS THAN (TO_DAYS('2023-06-01')),
-PARTITION m202306 VALUES LESS THAN (TO_DAYS('2023-07-01')),
-PARTITION m202307 VALUES LESS THAN (TO_DAYS('2023-08-01')),
-PARTITION m202308 VALUES LESS THAN (TO_DAYS('2023-09-01')),
-PARTITION future VALUES LESS THAN (MAXVALUE)")
-2. The above partition Query contains some pattern so that the automation script reads the value on the basis of the partition name so create a partition by using the above query or create a query like the above in the same pattern according to your requirement.
-3. Before running the automated script Make sure the table is already partitioned
-4. In the .txt file fill the details ( like cache monthly 2  from line 9 that is table_name, interval, partition you want to keep)
-5. Provide credentials like database name etc
-6. Run bash ./autoarchive-tables.sh in the terminal and go to the directory where the file is located.
-7. Provide MySQL password again and again if asked
-8. Finally if all your commands run successfully then you can see the dump file is created in the cache(table name) folder.
+1. The above partition Query contains some pattern so that the automation script reads the value on the basis of the partition name so create a partition by using the above query or create a query like the above in the same pattern according to your requirement.
+2. Before running the automated script Make sure the table is already partitioned
+3. In the .txt file fill the details ( like cache monthly 2  from line 9 that is table_name, interval, partition you want to keep)
+4. Provide credentials like database name etc
+5. Run bash ./autoarchive-tables.sh in the terminal and go to the directory where the file is located.
+6. Provide MySQL password again and again if asked
+7. Finally if all your commands run successfully then you can see the dump file is created in the cache(table name) folder.
 ## Output:
 ![Screenshot 2023-08-14 at 3 06 46 PM](https://github.com/madgicaltechdom/rezo-mysql/assets/109335469/87f44afd-91df-4d5b-a75f-0546db269c20)
 ![Screenshot 2023-08-14 at 3 07 00 PM](https://github.com/madgicaltechdom/rezo-mysql/assets/109335469/ed0f9c44-e03f-4417-b67a-ba44bbde471e)
