@@ -121,10 +121,7 @@ Always exercise caution when running SQL queries on databases, especially if you
 5. Run bash ./autoarchive-tables.sh in the terminal and go to the directory where the file is located.
 6. Provide MySQL password again and again if asked
 7. Finally if all your commands run successfully then you can see the dump file is created in the cache(table name) folder.
-## Output:
-![Screenshot 2023-08-14 at 3 06 46 PM](https://github.com/madgicaltechdom/rezo-mysql/assets/109335469/87f44afd-91df-4d5b-a75f-0546db269c20)
-![Screenshot 2023-08-14 at 3 07 00 PM](https://github.com/madgicaltechdom/rezo-mysql/assets/109335469/ed0f9c44-e03f-4417-b67a-ba44bbde471e)
-![Screenshot 2023-08-14 at 3 07 15 PM](https://github.com/madgicaltechdom/rezo-mysql/assets/109335469/f4a1696b-2fae-4d95-afc0-e6a3a16a874f)
+
 
 ## In Azure, you can use the cron syntax and the cronjob feature to schedule tasks, including automation of MySQL-related tasks. To automate MySQL tasks using cron and cronjob in Azure, follow these general steps:
 1. Access Your Azure VM:
