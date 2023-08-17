@@ -51,9 +51,10 @@ git clone https://github.com/madgicaltechdom/rezo-mysql
 ```
 ALTER TABLE cache DROP INDEX id_UNIQUE;
 ```
+
 5. Run the command to ALTER TABLE Command:
 
-``
+```
 ALTER TABLE cache MODIFY created_at Datetime;
 ```
 
