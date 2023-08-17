@@ -100,7 +100,7 @@ Always exercise caution when running SQL queries on databases, especially if you
     PARTITION m202307 VALUES LESS THAN (TO_DAYS('2023-08-01')),
     PARTITION m202308 VALUES LESS THAN (TO_DAYS('2023-09-01')),
     PARTITION future VALUES LESS THAN (MAXVALUE)
-)"
+)" --execute
 
 ```
  in the terminal and go to the directory where the file is located.
