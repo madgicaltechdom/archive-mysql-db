@@ -10,7 +10,7 @@ function fatal {
   echo "Exiting now." >&2
   exit 1
 }
-
+MYSQL_PASSWORD=$(cat mysql_password.txt)
 # calculate the upper limit for a partition
 function partition_upper_limit {
   local partition=$1
@@ -19,15 +19,15 @@ function partition_upper_limit {
   
   case "$interval_symbol" in
     "y")
-      mysql -u "root" -p -Nse "SELECT DATE_ADD(STR_TO_DATE('$year-1-1', '%Y-%m-%d'), INTERVAL 1 YEAR)"
+      mysql -u "root" -p"$MYSQL_PASSWORD"-Nse "SELECT DATE_ADD(STR_TO_DATE('$year-1-1', '%Y-%m-%d'), INTERVAL 1 YEAR)"
       ;;
     "m")
       local month=${partition:5:2}
-      mysql -u "root" -p -Nse "SELECT DATE_ADD(STR_TO_DATE('$year-$month-1', '%Y-%m-%d'), INTERVAL 1 MONTH)"
+      mysql -u "root" -p"$MYSQL_PASSWORD" -Nse "SELECT DATE_ADD(STR_TO_DATE('$year-$month-1', '%Y-%m-%d'), INTERVAL 1 MONTH)"
       ;;
     "w")
       local week=${partition:5:2}
-      mysql -u "root" -p -Nse "SELECT DATE_ADD(STR_TO_DATE('$year-$week Monday', '%x-%v %W'), INTERVAL 1 WEEK)"
+      mysql -u "root" -p"$MYSQL_PASSWORD" -Nse "SELECT DATE_ADD(STR_TO_DATE('$year-$week Monday', '%x-%v %W'), INTERVAL 1 WEEK)"
       ;;
     *)
       fatal "Unrecognized interval symbol for partition '$partition'"
@@ -54,7 +54,7 @@ while read table_name interval keep; do
   echo "Starting archival of '$table_name' with '$interval' interval, keeping $keep partitions"
   
   # read current partitions (excluding "future") into an array
-  readarray -t partitions < <(mysql -u "root" -p -Nse "SELECT PARTITION_NAME FROM INFORMATION_SCHEMA.PARTITIONS WHERE TABLE_NAME='$table_name' ORDER BY PARTITION_ORDINAL_POSITION")
+  readarray -t partitions < <(mysql -u "root" -p"$MYSQL_PASSWORD" -Nse "SELECT PARTITION_NAME FROM INFORMATION_SCHEMA.PARTITIONS WHERE TABLE_NAME='$table_name' ORDER BY PARTITION_ORDINAL_POSITION")
   unset partitions[-1]
   echo "Found partitions:          ${partitions[@]}"
 
@@ -65,7 +65,7 @@ while read table_name interval keep; do
     fi
 
     # sanity check - the partitions upper limits should be the same as we can calculate
-    upper_limit=$(mysql -u "root" -p -Nse "SELECT FROM_DAYS(PARTITION_DESCRIPTION) FROM INFORMATION_SCHEMA.PARTITIONS WHERE TABLE_NAME='$table_name' AND PARTITION_NAME='$partition'")
+    upper_limit=$(mysql -u "root" -p"$MYSQL_PASSWORD" -Nse "SELECT FROM_DAYS(PARTITION_DESCRIPTION) FROM INFORMATION_SCHEMA.PARTITIONS WHERE TABLE_NAME='$table_name' AND PARTITION_NAME='$partition'")
     calculated_upper_limit=$(partition_upper_limit $partition)
     if [[ "$upper_limit" != "$calculated_upper_limit" ]]; then
       fatal "Unexpected upper limit '$upper_limit' in partition '$partition'. Expected '$calculated_upper_limit'."
@@ -92,7 +92,7 @@ while read table_name interval keep; do
   esac
 
   # generate a sequence of newly calculated partition names
-  readarray -t new_partitions < <(for i in $(seq -$keep 1); do mysql -u "root" -p -Nse "SELECT DATE_FORMAT(DATE_ADD(DATE(NOW()), INTERVAL $i $date_unit), '$date_format')"; done)
+  readarray -t new_partitions < <(for i in $(seq -$keep 1); do mysql -u "root" -p "$MYSQL_PASSWORD"-Nse "SELECT DATE_FORMAT(DATE_ADD(DATE(NOW()), INTERVAL $i $date_unit), '$date_format')"; done)
   echo "Calculated new partitions: ${new_partitions[@]}"
 
   # sanity check - total number of partitions after archival shoud be $keep + 2 (the current partition + the next partition)
@@ -137,7 +137,7 @@ echo $partitions_to_export
   done
 
   # sanity check - the "future" partition should contain no records
-  future_partition_count=$(mysql -u "root" -p $database -Nse "SELECT COUNT(*) FROM $table_name PARTITION(future)")
+  future_partition_count=$(mysql -u "root" -p"$MYSQL_PASSWORD" $database -Nse "SELECT COUNT(*) FROM $table_name PARTITION(future)")
   if [[ "$future_partition_count" != 0 ]]; then
     fatal "There are records present in the 'future' partition of table '$table_name'! Please check this."
   fi
@@ -153,7 +153,7 @@ echo $partitions_to_export
     
     # drop the 'future' partition first so that we can add new ones "before" it
     echo "Dropping partition 'future'"
-    mysql -u "root" -p $database -Nse "ALTER TABLE $table_name $lock_algorithm, DROP PARTITION future"
+    mysql -u "root" -p"$MYSQL_PASSWORD" $database -Nse "ALTER TABLE $table_name $lock_algorithm, DROP PARTITION future"
   
     # add new partitions
     for partition in ${partitions_to_add[@]}; do
@@ -161,12 +161,12 @@ echo $partitions_to_export
       upper_limit=$(partition_upper_limit $partition)
 
       echo "Adding partition '$partition' with dates till '$upper_limit'"
-      mysql -u "root" -p $database -Nse "ALTER TABLE $table_name $lock_algorithm, ADD PARTITION (PARTITION $partition VALUES LESS THAN (TO_DAYS('$upper_limit')))"
+      mysql -u "root" -p"$MYSQL_PASSWORD" $database -Nse "ALTER TABLE $table_name $lock_algorithm, ADD PARTITION (PARTITION $partition VALUES LESS THAN (TO_DAYS('$upper_limit')))"
     done
 
     # add the 'future' partition
     echo "Adding partition 'future'"
-    mysql -u "root" -p $database -Nse "ALTER TABLE $table_name $lock_algorithm, ADD PARTITION (PARTITION future VALUES LESS THAN (MAXVALUE))"
+    mysql -u "root" -p"$MYSQL_PASSWORD"$database -Nse "ALTER TABLE $table_name $lock_algorithm, ADD PARTITION (PARTITION future VALUES LESS THAN (MAXVALUE))"
   fi
 
 

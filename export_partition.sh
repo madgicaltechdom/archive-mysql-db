@@ -3,7 +3,7 @@
 # "panic button" when run in a for loop:
 # exit
 
-database="Database_name"
+database="mad"
 export_dir="path/to/dir"
 
 set -e

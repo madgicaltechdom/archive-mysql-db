@@ -5,8 +5,8 @@ function usage {
   exit 1
 }
 
-database="Database_name"
-password="Password"
+database="mad"
+password="9431"
 host="localhost"
 user="root"
 
