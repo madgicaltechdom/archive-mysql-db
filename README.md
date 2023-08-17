@@ -50,7 +50,10 @@ git clone https://github.com/madgicaltechdom/rezo-mysql
 
 ```
 ALTER TABLE cache DROP INDEX id_UNIQUE;
+```
+5. Run the command to ALTER TABLE Command:
 
+``
 ALTER TABLE cache MODIFY created_at Datetime;
 ```
 
@@ -149,6 +152,10 @@ Ensure the script has executable permissions. You can use the command chmod +x m
 
 Remember to replace placeholders like /path/to/mysql_backup_script.sh with the actual path to your shell script, and adjust the timing to match your requirements.
 
+## Output:
+![Screenshot 2023-08-14 at 3 06 46 PM](https://github.com/madgicaltechdom/rezo-mysql/assets/109335469/87f44afd-91df-4d5b-a75f-0546db269c20)
+![Screenshot 2023-08-14 at 3 07 00 PM](https://github.com/madgicaltechdom/rezo-mysql/assets/109335469/ed0f9c44-e03f-4417-b67a-ba44bbde471e)
+![Screenshot 2023-08-14 at 3 07 15 PM](https://github.com/madgicaltechdom/rezo-mysql/assets/109335469/f4a1696b-2fae-4d95-afc0-e6a3a16a874f)
 
 
 
