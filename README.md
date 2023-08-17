@@ -58,14 +58,14 @@ ALTER TABLE cache DROP INDEX id_UNIQUE;
 ALTER TABLE cache MODIFY created_at Datetime;
 ```
 
-5. Run Query:
+6. Run Query:
 - Open your .sql file that contains the SQL code and provide the database name to create the cache/insert table.
 - Right-click on the file then click on the "Run Query" button.
 - Your query will run and successful message you can see in the terminal.
-6. Run the command to show the table
+7. Run the command to show the table
   
 ```
-SHOW CREATE TABLE cachet;
+SHOW CREATE TABLE cache;
 ```
 
 Always exercise caution when running SQL queries on databases, especially if you're working with production data. It's advisable to test queries on a development or testing environment before applying them to production databases.
@@ -78,7 +78,15 @@ Always exercise caution when running SQL queries on databases, especially if you
 ````
 2. Install gh-ost [tool]( https://github.com/github/gh-ost/releases/tag/v1.1.5)
 3. Keep the tool and repo in the same folder or give the path to gh-ost tool in all script files where "./gh-ost" is called.
-4. Preparing tables for partitioning
+4. Run the command to Add the primary key.
+   
+```
+./run_ghost.sh cache 'ADD UNIQUE KEY temp_pk (id, created_at)' --execute
+./run_ghost.sh cache "DROP PRIMARY KEY, DROP KEY temp_pk, ADD PRIMARY KEY (id, created_at)" --execute
+
+```
+   
+5. Preparing tables for partitioning
 - Open run_ghost.sh file . Fill in credentials (Database name, host, Password, etc)
 - Then Run
 ```
@@ -97,7 +105,7 @@ Always exercise caution when running SQL queries on databases, especially if you
 ```
  in the terminal and go to the directory where the file is located.
 - Finally, Partition will be created. You can change the above query according to your requirement like a partition on the basis of month or column name or increase/decrease no of partition etc.
-5. Exporting old data from the table
+6. Exporting old data from the table
 - Open export_partition.sh file, Provide credentials like database name and export_dir
 - Run
 ```
@@ -106,7 +114,7 @@ Always exercise caution when running SQL queries on databases, especially if you
   in the terminal and go to the directory where the file is located.
 - Provide MySQL password again and again if asked
 - Finally, your file will be created in the directory you provided in the script file if all the steps run successfully.
-6. Restoring data from the archive
+7. Restoring data from the archive
 - Run
   ```
    gunzip /export_dir/filename.gz | MySQL -u root -p
