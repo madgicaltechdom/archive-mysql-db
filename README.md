@@ -57,7 +57,7 @@ Always exercise caution when running SQL queries on databases, especially if you
 ### Steps for Archiving [video](https://drive.google.com/file/d/13XYQ_gdBlxuHMapFnvCGQxcrUg-js9e7/view)
 1. Clone repo:
 ````
- https://github.com/madgicaltechdom/rezo-mysql/tree/mysql-archieve-latest
+ https://github.com/madgicaltechdom/rezo-mysql
 ````
 2. Install gh-ost [tool]( https://github.com/github/gh-ost/releases/tag/v1.1.5)
 3. Keep the tool and repo in the same folder or give the path to gh-ost tool in all script files where "./gh-ost" is called.
