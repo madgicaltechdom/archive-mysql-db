@@ -1,5 +1,5 @@
-use mad;
-CREATE TABLE `cachet` (
+use Databasename;
+CREATE TABLE `cache` (
   `id` int NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `counter` int NOT NULL DEFAULT '1',

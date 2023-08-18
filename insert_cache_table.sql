@@ -1,10 +1,10 @@
-use DatabaseName;
+use Databasename;
 DROP PROCEDURE IF EXISTS insert_loop;
 CREATE PROCEDURE insert_loop()
 BEGIN
     DECLARE i INT DEFAULT 1;
     WHILE i <= 50000 DO
-        INSERT INTO cacheb (model_name, engine, lang, other_prop, request, response, created_at)
+        INSERT INTO cache (model_name, engine, lang, other_prop, request, response, created_at)
         VALUES (
             CONCAT('model_', i),
             CONCAT('engine_', i),
