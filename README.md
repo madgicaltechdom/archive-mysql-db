@@ -41,23 +41,6 @@ git clone https://github.com/madgicaltechdom/rezo-mysql
 - Then provide details like "host", "user", "password", "port" etc.
 -   And then press enter. Your connection will be added.
 
-3. Run the following command to ALTER TABLE Command:
-
- ```
-   ALTER TABLE cache DROP INDEX search_query;
- ```
-4. Run the command  to ALTER TABLE Command:
-
-```
-ALTER TABLE cache DROP INDEX id_UNIQUE;
-```
-
-5. Run the command to ALTER TABLE Command:
-
-```
-ALTER TABLE cache MODIFY created_at Datetime;
-```
-
 6. Run Query:
 - Open your .sql file that contains the SQL code and provide the database name to create the cache/insert table.
 - Right-click on the file then click on the "Run Query" button.
@@ -78,7 +61,14 @@ Always exercise caution when running SQL queries on databases, especially if you
 ````
 2. Install gh-ost [tool]( https://github.com/github/gh-ost/releases/tag/v1.1.5)
 3. Keep the tool and repo in the same folder or give the path to gh-ost tool in all script files where "./gh-ost" is called.
-4. Run the command to Add the primary key.
+4. Run the command to alter table
+  ```
+ ./run_ghost.sh cache 'ALTER TABLE cache DROP INDEX search_query;'
+./run_ghost.sh cache 'ALTER TABLE cache DROP INDEX id_UNIQUE;'
+./run_ghost.sh cache 'ALTER TABLE cache MODIFY created_at Datetime;'
+```
+
+6. Run the command to Add the primary key.
    
 ```
 ./run_ghost.sh cache 'ADD UNIQUE KEY temp_pk (id, created_at)' --execute
