@@ -5,7 +5,7 @@ function usage {
   exit 1
 }
 
-database="mad"
+database="forkwork"
 password="9431"
 host="localhost"
 user="root"
