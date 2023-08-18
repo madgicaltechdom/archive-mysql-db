@@ -68,7 +68,7 @@ Always exercise caution when running SQL queries on databases, especially if you
 ./run_ghost.sh cache 'ALTER TABLE cache MODIFY created_at Datetime;'
 ```
 
-6. Run the command to Add the primary key.
+5. Run the command to Add the primary key.
    
 ```
 ./run_ghost.sh cache 'ADD UNIQUE KEY temp_pk (id, created_at)' --execute
@@ -76,7 +76,7 @@ Always exercise caution when running SQL queries on databases, especially if you
 
 ```
    
-5. Preparing tables for partitioning
+6. Preparing tables for partitioning
 - Open run_ghost.sh file . Fill in credentials (Database name, host, Password, etc)
 - Then Run
 ```
@@ -95,7 +95,7 @@ Always exercise caution when running SQL queries on databases, especially if you
 ```
  in the terminal and go to the directory where the file is located.
 - Finally, Partition will be created. You can change the above query according to your requirement like a partition on the basis of month or column name or increase/decrease no of partition etc.
-6. Exporting old data from the table
+7. Exporting old data from the table
 - Open export_partition.sh file, Provide credentials like database name and export_dir
 - Run
 ```
@@ -104,7 +104,7 @@ Always exercise caution when running SQL queries on databases, especially if you
   in the terminal and go to the directory where the file is located.
 - Provide MySQL password again and again if asked
 - Finally, your file will be created in the directory you provided in the script file if all the steps run successfully.
-7. Restoring data from the archive
+8. Restoring data from the archive
 - Run
   ```
    gunzip /export_dir/filename.gz | MySQL -u root -p
