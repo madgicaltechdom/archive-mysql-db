@@ -61,7 +61,18 @@ Always exercise caution when running SQL queries on databases, especially if you
 ````
 2. Install gh-ost [tool]( https://github.com/github/gh-ost/releases/tag/v1.1.5)
 3. Keep the tool and repo in the same folder or give the path to gh-ost tool in all script files where "./gh-ost" is called.
-4. Run the command to alter table
+4. Running the Shell Script
+   ```
+   chmod +x run_ghost.sh
+```
+
+
+6. You can now run the script with the following syntax:
+```
+./run_ghost.sh table_name 'alter_command'
+```
+Replace table_name with the name of the table you want to alter and alter_command with the actual SQL alter command, like:
+
   ```
  ./run_ghost.sh cache 'ALTER TABLE cache DROP INDEX search_query;'
 ./run_ghost.sh cache 'ALTER TABLE cache DROP INDEX id_UNIQUE;'
