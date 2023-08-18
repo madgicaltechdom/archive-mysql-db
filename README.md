@@ -41,11 +41,11 @@ git clone https://github.com/madgicaltechdom/rezo-mysql
 - Then provide details like "host", "user", "password", "port" etc.
 -   And then press enter. Your connection will be added.
 
-6. Run Query:
+3. Run Query:
 - Open your .sql file that contains the SQL code and provide the database name to create the cache/insert table.
 - Right-click on the file then click on the "Run Query" button.
 - Your query will run and successful message you can see in the terminal.
-7. Run the command to show the table
+4. Run the command to show the table
   
 ```
 SHOW CREATE TABLE cache;
