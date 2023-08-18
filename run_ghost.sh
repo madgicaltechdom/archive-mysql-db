@@ -4,14 +4,13 @@ function usage {
   echo "Use ./run_ghost.sh table_name 'alter_command' [other_ghost_args]"
   exit 1
 }
+MYSQL_PASSWORD=$(cat mysql_password.txt)
 
-database="forkwork"
-password="9431"
-host="localhost"
-user="root"
-MYSQL_CMD="mysql"
-# Execute the SQL commands from alter_tables.sql
-$MYSQL_CMD -u $user -p$password $database < alter_tables.sql
+database="DatabaseName"
+host="HostName"
+user="UserName"
+password=$MYSQL_PASSWORD
+
 table=$1
 shift
 
@@ -37,5 +36,6 @@ touch $cut_over_file
          --alter="$alter" \
          --chunk-size=2000 --max-load=Threads_connected=50 \
          --allow-on-master --ssl --ssl-allow-insecure --exact-rowcount \
+         --allow-nullable-unique-key \
          --initially-drop-ghost-table --initially-drop-socket-file  --initially-drop-old-table\
          --verbose $*
