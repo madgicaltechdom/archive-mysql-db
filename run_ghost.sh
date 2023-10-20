@@ -4,7 +4,7 @@ function usage {
   echo "Use ./run_ghost.sh table_name 'alter_command' [other_ghost_args]"
   exit 1
 }
-MYSQL_PASSWORD=$(cat mysql_password.txt)
+MYSQL_PASSWORD=$(cat Mysql_Password.txt)
 
 database="DatabaseName"
 host="HostName"

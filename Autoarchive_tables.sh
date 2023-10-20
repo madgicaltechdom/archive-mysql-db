@@ -10,7 +10,7 @@ function fatal {
   echo "Exiting now." >&2
   exit 1
 }
-MYSQL_PASSWORD=$(cat mysql_password.txt)
+MYSQL_PASSWORD=$(cat Mysql_Password.txt)
 # calculate the upper limit for a partition
 function partition_upper_limit {
   local partition=$1
@@ -184,7 +184,7 @@ echo $partitions_to_export
 
   echo
 
-done < <(cat ./autoarchived-tables.txt | grep -v "^#" | grep -v "^$")
+done < <(cat ./Autoarchived_tables_sh_output.txt | grep -v "^#" | grep -v "^$")
 
 
 # if we altered tables, echo something to STDERR to trigger sending email from crontab!
