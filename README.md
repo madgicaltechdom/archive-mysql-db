@@ -109,7 +109,7 @@ Replace table_name with the name of the table you want to alter and alter_comman
 ```
  in the terminal and go to the directory where the file is located.
 - Finally, Partition will be created. You can change the above query according to your requirement like a partition on the basis of month or column name or increase/decrease no of partition etc.
-8. Exporting old data from the table
+. Exporting old data from the table (mysql dump)
 - Open export_partition.sh file, Provide credentials like database name and export_dir
 - Run
 ```
@@ -125,6 +125,8 @@ Replace table_name with the name of the table you want to alter and alter_comman
   ```
   in the terminal and go to the directory where the file is located.
 - Your file will be restored.
+
+### [How to Read Parquet Data from Azure Blob] (https://drive.google.com/file/d/16bj8dZAZddHvjIoF1MV7llpIE762cvCT/view?usp=sharing)
 ### Steps for Automation
 1. The above partition Query contains some pattern so that the automation script reads the value on the basis of the partition name so create a partition by using the above query or create a query like the above in the same pattern according to your requirement.
 2. Before running the automated script Make sure the table is already partitioned
