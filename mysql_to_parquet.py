@@ -5,22 +5,22 @@ import pymysql
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient, ContentSettings
 
 # MySQL connection parameters
-mysql_host = '127.0.0.1'
-mysql_user = 'test'
-mysql_password = 'Calmhouse#50'
-mysql_db = 'keshav'
+mysql_host = 'azure.com'
+mysql_user = 'db'
+mysql_password = ''
+mysql_db = 'lt'
 
 # SQL query to retrieve data
-sql_query = 'SELECT id,priority,query_description,model_name,updated_at FROM keshav.queue_task_manager limit 1000'
+sql_query = 'SELECT * FROM lt.voc'
 
 # Specify the Parquet file path
-parquet_file_path = 'data.parquet'
+parquet_file_path = 'lt-voc.parquet'
 
 # Azure Storage account information
 account_name = 'keshavtesting'
-account_key = 'H8woyne3OP34rUKEZ1DIfsZwMql+TSA+3ZIjGZcl9P5QVdhyfqvMpaG4DT0evI7rAtNH6ryA6AWD+AStHyJTpQ=='
+account_key = 'H8w+TSA+3ZIjGZcl9P5QVdhyfqvMpaG4DT0evI7rAtNH6ryA6AWD+AStHyJTpQ=='
 container_name = 'keshav-sql'
-blob_name = 'azdata.parquet'
+blob_name = 'azlnt-lt-voc.parquet'
 
 ############################################################################################
 
@@ -52,6 +52,7 @@ else:
     blob_service_client = BlobServiceClient(account_url=f"https://{account_name}.blob.core.windows.net", credential=account_key)
     container_client = blob_service_client.get_container_client(container_name)
     with open(parquet_file_path, "rb") as data:
-        container_client.upload_blob(name=blob_name, data=data, blob_type="BlockBlob", content_settings=ContentSettings(content_type="application/parquet"))
+        max_block_size = 4*1024*1024
+        container_client.upload_blob(name=blob_name, data=data,max_block_size=max_block_size, blob_type="BlockBlob", content_settings=ContentSettings(content_type="application/parquet"))
 
     print("Parquet file has been uploaded to Azure Blob Storage.")
