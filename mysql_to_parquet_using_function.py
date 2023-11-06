@@ -4,17 +4,20 @@ import pyarrow.parquet as pq
 import pymysql
 from azure.storage.blob import BlobServiceClient, ContentSettings
 
-# Establish MySQL connection
-mysql_host = '127.0.0.1'
+# MySQL connection parameters
+mysql_host = 'db.mysql.database.azure.com'
 mysql_user = 'db'
 mysql_password = 'Z'
-mysql_db = 'll'
+mysql_db = 'l'
 
 # Azure Storage account information
 account_name = 'testing'
-account_key = 'AStHyJTpQ'
+account_key = '=='
 container_name = 'sql'
 blob_name = 'oc.parquet'
+
+# SQL query to retrieve data
+sql_query = 'SELECT * FROM abc'
 
 # Specify the Parquet file path
 parquet_file_path = 'oc.parquet'
@@ -24,7 +27,6 @@ def export_parquet_to_local():
     try:
         with pymysql.connect(host=mysql_host, user=mysql_user, password=mysql_password, db=mysql_db, charset='utf8mb4') as connection:
             # Execute the SQL query and retrieve data as a DataFrame
-            sql_query = 'SELECT * FROM ll.oc'
             data_df = pd.read_sql_query(sql_query, connection)
 
             # Check if the DataFrame is empty (contains only column headers)

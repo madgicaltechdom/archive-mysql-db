@@ -5,22 +5,22 @@ import pymysql
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient, ContentSettings
 
 # MySQL connection parameters
-mysql_host = 'azure.com'
+mysql_host = 'db.mysql.database.azure.com'
 mysql_user = 'db'
-mysql_password = ''
-mysql_db = 'lt'
-
-# SQL query to retrieve data
-sql_query = 'SELECT * FROM lt.voc'
-
-# Specify the Parquet file path
-parquet_file_path = 'lt-voc.parquet'
+mysql_password = 'Z'
+mysql_db = 'l'
 
 # Azure Storage account information
-account_name = 'keshavtesting'
-account_key = 'H8w+TSA+3ZIjGZcl9P5QVdhyfqvMpaG4DT0evI7rAtNH6ryA6AWD+AStHyJTpQ=='
-container_name = 'keshav-sql'
-blob_name = 'azlnt-lt-voc.parquet'
+account_name = 'testing'
+account_key = '=='
+container_name = 'sql'
+blob_name = 'oc.parquet'
+
+# SQL query to retrieve data
+sql_query = 'SELECT * FROM abc'
+
+# Specify the Parquet file path
+parquet_file_path = 'oc.parquet'
 
 ############################################################################################
 
