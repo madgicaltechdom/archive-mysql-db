@@ -48,7 +48,7 @@ def export_parquet_to_local():
         # You can add retry logic here or handle the error as needed
 
 
-def upload_parquet_to_azure(account_name, account_key, container_name, blob_name, parquet_file_path):
+def upload_parquet_to_azure(account_name, account_key, container_name, blob_name, parquet_file_path,counter):
     try:
             # Upload the Parquet file to Azure Blob Storage with retry logic
             blob_service_client = BlobServiceClient(account_url=f"https://{account_name}.blob.core.windows.net", credential=account_key)
@@ -65,13 +65,20 @@ def upload_parquet_to_azure(account_name, account_key, container_name, blob_name
 
             print("Parquet file has been uploaded to Azure Blob Storage.")
     except Exception as e:
-        print(f"An error occurred during the upload: {str(e)}")
+        print(f"Not able to Upload file: {str(e)}" + counter)
+        if(counter<4):  
+            upload_parquet_to_azure(account_name, account_key, container_name, blob_name, parquet_file_path,counter+1)
+        else:
+            print(f"Not able to Upload file after counter:" + counter)
         # You can add retry logic here or handle the error as needed
 
 def main():
+    # Call the function to Export to local
     export_parquet_to_local()
+    print("Parquet file has been exported to Local")
+
     # Call the function to upload the Parquet file to Azure with retry logic
-    upload_parquet_to_azure(account_name, account_key, container_name, blob_name, parquet_file_path)
+    upload_parquet_to_azure(account_name, account_key, container_name, blob_name, parquet_file_path,1)
 
 if __name__ == "__main__":
     main()
