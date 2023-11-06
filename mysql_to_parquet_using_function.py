@@ -2,8 +2,7 @@ import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
 import pymysql
-from azure.storage.blob import BlobServiceClient, ContainerClient, ContentSettings
-
+from azure.storage.blob import BlobServiceClient, ContentSettings
 
 # Establish MySQL connection
 mysql_host = '127.0.0.1'
@@ -23,11 +22,10 @@ parquet_file_path = 'oc.parquet'
 ########################################
 def export_parquet_to_local():
     try:
-        with pymysql.connect(host=mysql_host, user=mysql_user, password=mysql_password, db=mysql_db, charset='utf8mb4') as connection :
+        with pymysql.connect(host=mysql_host, user=mysql_user, password=mysql_password, db=mysql_db, charset='utf8mb4') as connection:
             # Execute the SQL query and retrieve data as a DataFrame
             sql_query = 'SELECT * FROM ll.oc'
             data_df = pd.read_sql_query(sql_query, connection)
-
 
             # Check if the DataFrame is empty (contains only column headers)
             if data_df.empty:
@@ -44,41 +42,38 @@ def export_parquet_to_local():
 
                 print('Data has been exported to Parquet file:', parquet_file_path)
     except Exception as e:
-        print(f"An error occurred during the upload: {str(e)}")
-        # You can add retry logic here or handle the error as needed
+        print(f"An error occurred during the export: {str(e)}")
 
-
-def upload_parquet_to_azure(account_name, account_key, container_name, blob_name, parquet_file_path,counter):
+def upload_parquet_to_azure(account_name, account_key, container_name, blob_name, parquet_file_path, counter):
     try:
-            # Upload the Parquet file to Azure Blob Storage with retry logic
-            blob_service_client = BlobServiceClient(account_url=f"https://{account_name}.blob.core.windows.net", credential=account_key)
-            container_client = blob_service_client.get_container_client(container_name)
-            with open(parquet_file_path, "rb") as data:
-                max_block_size = 4 * 1024 * 1024
-                container_client.upload_blob(
-                    name=blob_name,
-                    data=data,
-                    max_block_size=max_block_size,
-                    blob_type="BlockBlob",
-                    content_settings=ContentSettings(content_type="application/parquet")
-                )
+        # Upload the Parquet file to Azure Blob Storage with retry logic
+        blob_service_client = BlobServiceClient(account_url=f"https://{account_name}.blob.core.windows.net", credential=account_key)
+        container_client = blob_service_client.get_container_client(container_name)
+        with open(parquet_file_path, "rb") as data:
+            max_block_size = 4 * 1024 * 1024
+            container_client.upload_blob(
+                name=blob_name,
+                data=data,
+                max_block_size=max_block_size,
+                blob_type="BlockBlob",
+                content_settings=ContentSettings(content_type="application/parquet")
+            )
 
-            print("Parquet file has been uploaded to Azure Blob Storage.")
+        print("Parquet file has been uploaded to Azure Blob Storage.")
     except Exception as e:
-        print(f"Not able to Upload file: {str(e)}" + counter)
-        if(counter<4):  
-            upload_parquet_to_azure(account_name, account_key, container_name, blob_name, parquet_file_path,counter+1)
+        print(f"Not able to upload file (attempt {counter}): {str(e)}")
+        if counter < 4:
+            upload_parquet_to_azure(account_name, account_key, container_name, blob_name, parquet_file_path, counter + 1)
         else:
-            print(f"Not able to Upload file after counter:" + counter)
-        # You can add retry logic here or handle the error as needed
+            print(f"Not able to upload file after {counter} attempts.")
 
 def main():
-    # Call the function to Export to local
+    # Call the function to export to local
     export_parquet_to_local()
-    print("Parquet file has been exported to Local")
+    print("Parquet file has been exported to local")
 
     # Call the function to upload the Parquet file to Azure with retry logic
-    upload_parquet_to_azure(account_name, account_key, container_name, blob_name, parquet_file_path,1)
+    upload_parquet_to_azure(account_name, account_key, container_name, blob_name, parquet_file_path, 1)
 
 if __name__ == "__main__":
     main()
