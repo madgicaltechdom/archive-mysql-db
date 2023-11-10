@@ -43,6 +43,9 @@ git clone https://github.com/madgicaltechdom/rezo-mysql
 
 3. Run Query:
 - Open your .sql file that contains the SQL code and provide the database name to create the cache/insert table.
+- 1. run create_cache_table.sql
+- 2. run insert_cache_table.sql
+- 3. run alter_tables.sql (This step is temporary. In future we'll run alter commands using gh-ost)
 - Right-click on the file then click on the "Run Query" button.
 - Your query will run and successful message you can see in the terminal.
 4. Run the command to show the table
@@ -94,7 +97,7 @@ Replace table_name with the name of the table you want to alter and alter_comman
 - Open run_ghost.sh file . Fill in credentials (Database name, host, Password, etc)
 - Then Run
 ```
- ./run_ghost.sh cachet "PARTITION BY RANGE (TO_DAYS(created_at)) (
+ ./run_ghost.sh cache "PARTITION BY RANGE (TO_DAYS(created_at)) (
     PARTITION m202301 VALUES LESS THAN (TO_DAYS('2023-02-01')),
     PARTITION m202302 VALUES LESS THAN (TO_DAYS('2023-03-01')),
     PARTITION m202303 VALUES LESS THAN (TO_DAYS('2023-04-01')),
@@ -109,7 +112,7 @@ Replace table_name with the name of the table you want to alter and alter_comman
 ```
  in the terminal and go to the directory where the file is located.
 - Finally, Partition will be created. You can change the above query according to your requirement like a partition on the basis of month or column name or increase/decrease no of partition etc.
-. Exporting old data from the table (mysql dump)
+8. Exporting old data from the table (Not required, if we want to export in Parquet format)
 - Open export_partition.sh file, Provide credentials like database name and export_dir
 - Run
 ```
@@ -118,13 +121,19 @@ Replace table_name with the name of the table you want to alter and alter_comman
   in the terminal and go to the directory where the file is located.
 - Provide MySQL password again and again if asked
 - Finally, your file will be created in the directory you provided in the script file if all the steps run successfully.
-9. Restoring data from the archive
+9. Restoring data from the archive (Not required, if we are exporting data in Parquet format)
 - Run
   ```
    gunzip /export_dir/filename.gz | MySQL -u root -p
   ```
   in the terminal and go to the directory where the file is located.
 - Your file will be restored.
+
+10. To export data into Parquet format
+- Run
+  ```
+   python export_to_parquet.py
+  ```
 
 ### How to Read Parquet Data from Azure Blob: [Video](https://drive.google.com/file/d/16bj8dZAZddHvjIoF1MV7llpIE762cvCT/view?usp=sharing)
 ### Steps for Automation
