@@ -1,4 +1,4 @@
-## Rezo-MySQL
+## archive-mysql-db
 If you're looking to manage MySQL connections and run SQL queries directly within Visual Studio Code, you can use an extension like "MySQL" or "SQL Server (mysql)".For instance, the "MySQL" extension allows you to set up connections and execute SQL queries. 
 This document provides instructions for setting up and managing a MySQL database connection for your application. Follow the steps below to establish a connection to your MySQL database.
 
@@ -25,7 +25,7 @@ To configure your system using this repository, follow these steps:
 1. Clone the repository to your local machine by running the below command:
 
 ```
-git clone https://github.com/madgicaltechdom/rezo-mysql
+git clone https://github.com/madgicaltechdom/archive-mysql-db
 ```
 ## Step of performing operation: [video](https://drive.google.com/file/d/18FqgshsfDs1wlN9qG178P9bOByEkb6ii/view)
 
@@ -60,7 +60,7 @@ Always exercise caution when running SQL queries on databases, especially if you
 ### Steps for Archiving [video](https://drive.google.com/file/d/13XYQ_gdBlxuHMapFnvCGQxcrUg-js9e7/view)
 1. Clone repo:
 ````
- https://github.com/madgicaltechdom/rezo-mysql
+ https://github.com/madgicaltechdom/archive-mysql-db
 ````
 2. Install gh-ost [tool]( https://github.com/github/gh-ost/releases/tag/v1.1.5)
 3. Keep the tool and repo in the same folder or give the path to gh-ost tool in all script files where "./gh-ost" is called.
@@ -174,9 +174,9 @@ Ensure the script has executable permissions. You can use the command chmod +x m
 Remember to replace placeholders like /path/to/mysql_backup_script.sh with the actual path to your shell script, and adjust the timing to match your requirements.
 
 ## Output:
-![Screenshot 2023-08-14 at 3 06 46 PM](https://github.com/madgicaltechdom/rezo-mysql/assets/109335469/87f44afd-91df-4d5b-a75f-0546db269c20)
-![Screenshot 2023-08-14 at 3 07 00 PM](https://github.com/madgicaltechdom/rezo-mysql/assets/109335469/ed0f9c44-e03f-4417-b67a-ba44bbde471e)
-![Screenshot 2023-08-14 at 3 07 15 PM](https://github.com/madgicaltechdom/rezo-mysql/assets/109335469/f4a1696b-2fae-4d95-afc0-e6a3a16a874f)
+![Screenshot 2023-08-14 at 3 06 46 PM](https://github.com/madgicaltechdom/archive-mysql-db/assets/109335469/87f44afd-91df-4d5b-a75f-0546db269c20)
+![Screenshot 2023-08-14 at 3 07 00 PM](https://github.com/madgicaltechdom/archive-mysql-db/assets/109335469/ed0f9c44-e03f-4417-b67a-ba44bbde471e)
+![Screenshot 2023-08-14 at 3 07 15 PM](https://github.com/madgicaltechdom/archive-mysql-db/assets/109335469/f4a1696b-2fae-4d95-afc0-e6a3a16a874f)
 
 
 
