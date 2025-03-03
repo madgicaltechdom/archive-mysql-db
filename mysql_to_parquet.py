@@ -17,8 +17,8 @@ sql_query = 'SELECT id,priority,query_description,model_name,updated_at FROM kes
 parquet_file_path = 'data.parquet'
 
 # Azure Storage account information
-account_name = 'keshavtesting'
-account_key = 'H8woyne3OP34rUKEZ1DIfsZwMql+TSA+3ZIjGZcl9P5QVdhyfqvMpaG4DT0evI7rAtNH6ryA6AWD+AStHyJTpQ=='
+account_name = ''
+account_key = ''
 container_name = 'keshav-sql'
 blob_name = 'azdata.parquet'
 
